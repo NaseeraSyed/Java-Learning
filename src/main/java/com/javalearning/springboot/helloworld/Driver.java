@@ -19,6 +19,7 @@ package com.javalearning.springboot.helloworld;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.javalearning.springboot.helloworld.model.Employee;
@@ -82,6 +83,34 @@ public class Driver {
 		empNames.stream()
 		.filter(Objects::nonNull)
 		.map(e->e.toUpperCase()).forEach(System.out::println);
+		
+		// filter a list of integers to get only the even numbers
+		
+		List<Integer> numbers= Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+		
+		List<Integer> evennumbers = numbers.stream().filter(n->n%2==0).collect(Collectors.toList());
+		
+		System.out.println("Evennumbers"  + evennumbers);
+		
+		 //first element in a list that is greater than 10
+		
+		List<Integer> nums = Arrays.asList(5, 12, 7, 18, 3);
+		
+		Optional<Integer> firstGreaterThanTen = nums.stream().filter(n-> n>10).findFirst();
+		
+		System.out.println(firstGreaterThanTen.orElse(null));
+		
+		// flatten a list of lists into a single list
+		
+		List<List<String>> flatlist = Arrays.asList(
+	            Arrays.asList("a", "b", "c"),
+	            Arrays.asList("d", "e", "f"),
+	            Arrays.asList("g", "h", "i")
+	        );
+				
+		List<String> flattenedList = flatlist.stream().flatMap(List :: stream).collect(Collectors.toList());
+		
+		System.out.println("flatten a list of lists into a single list   "  +   flattenedList);
 	}
 	
 	
